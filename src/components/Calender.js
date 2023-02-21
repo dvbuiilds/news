@@ -131,28 +131,28 @@ export default function Calender(props) {
 
 function slotGroupStyle () {
   return ({
-      style: {
-        minHeight: "150px",
-        backgroundColor: "white",
-        fontSize: "12px",
-        // paddingRight: "50px"
-      }
-    })
+    style: {
+      minHeight: "150px",
+      backgroundColor: "white",
+      fontSize: "12px",
+      // paddingRight: "50px"
+    }
+  })
 }
 
 function eventStyleGetter (event, start, end, isSelected) {
   return {
-      style: {
-        backgroundColor: "#007BFF",
-        minWidth: "200px",
-        // borderRadius: '5px',
-        opacity: 1,
-        color: 'white',
-        border: '0px',
-        display: 'block',
-        borderColor: "white",
-        paddingLeft: "5px"
-        // borderWidth: "20px"
+    style: {
+      backgroundColor: "#007BFF",
+      minWidth: "200px",
+      // borderRadius: '5px',
+      opacity: 1,
+      color: 'white',
+      border: '0px',
+      display: 'block',
+      borderColor: "white",
+      paddingLeft: "5px"
+      // borderWidth: "20px"
     }
   };
 }
@@ -187,19 +187,6 @@ const EventComponent = () => (props) => {
     </>
   );
 };
-
-// const Components = ()=> {
-//   const { components, defaultDate } = useMemo(
-//     () => ({
-//       components: {
-//         toolbar: CustomToolbar,
-//       },
-//       defaultDate: new Date(2023, 2, 11),
-//     }),
-//     []
-//   )
-// }
-
 
 var CustomToolbar = ({ handleChange }) => {
   // @ts-ignore
