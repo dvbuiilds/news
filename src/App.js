@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, Component } from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import News from './components/News';
 import Footer from './components/Footer';
@@ -52,3 +52,5 @@ const App = ()=> {
       </>
     )
 }
+
+export default App;

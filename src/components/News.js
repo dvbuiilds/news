@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
 import InfiniteScroll from '../../node_modules/react-infinite-scroll-component/dist/index';
-// import InfiniteScroll from 'react-infinite-scroll-component';
 import NewsItems from './NewsItems'
 import Spinner from './Spinner';
 
@@ -11,7 +10,6 @@ const News =(props)=> {
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
 
-  // document.title = `${this.capitalizeWord(props.category)} - Top Headlines`;
 
   const capitalizeWord = (string)=>{
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -27,7 +25,7 @@ const News =(props)=> {
       let parsedData = await data.json();
 
       setArticles(parsedData["articles"]);
-      setLoading(true);
+      setLoading(false);
       setTotalResults(parsedData["totalResults"]);
       props.setProgress(100);
     }, 500);
@@ -35,19 +33,20 @@ const News =(props)=> {
 
   useEffect(() => {
     (()=>{updatePage();})();
+    document.title = `${capitalizeWord(props.category)} - Top Headlines`;
   }, []);
   
-  // const handleNextPage = async ()=>{
-  //   setPage(page+1);
-  //   setLoading(true);
-  //   updatePage();
-  // }
+  const handleNextPage = async ()=>{
+    setPage(page+1);
+    setLoading(true);
+    updatePage();
+  }
 
-  // const handlePrevPage = async ()=>{
-  //   setPage(page-1);
-  //   setLoading(true);
-  //   updatePage();
-  // }
+  const handlePrevPage = async ()=>{
+    setPage(page-1);
+    setLoading(true);
+    updatePage();
+  }
 
   const fetchMoreData = ()=>{
     console.log('fetchMoreData');
@@ -66,14 +65,14 @@ const News =(props)=> {
   return (
     <div>
       <div className='container'>
-        <div className='row mt-3' >
-          {/* <div className='col-md-3 text-center'><button className='btn btn-lg btn-primary ' onClick={handlePrevPage} disabled={state.page <= 1}>Prev</button></div> */}
+        <div className='row' style={{marginTop: "70px"}} >
+          <div className='col-md-3 text-center'><button className='btn btn-lg btn-primary ' onClick={handlePrevPage} disabled={page <= 1}>Prev</button></div>
           <div className='col-lg-6 align-items-end text-center'><h1>News Highlights - {capitalizeWord(props.category)}</h1></div>
-          {/* <div className='col-md-3 text-center'><button className='btn btn-lg btn-dark' onClick={handleNextPage} disabled={state.page+1 > Math.ceil(state.totalResults/10)}>Next</button></div> */}
+          <div className='col-md-3 text-center'><button className='btn btn-lg btn-dark' onClick={handleNextPage} disabled={page+1 > Math.ceil(totalResults/10)}>Next</button></div>
         </div>
-        {/* {loading && <Spinner/>} */}
-        <div className='row'>
-        <InfiniteScroll
+        {loading && <Spinner/>}
+        <div className='row '>
+        {/* <InfiniteScroll
           dataLength={articles.length}
           next={fetchMoreData}
           hasMore={articles.length < totalResults}
@@ -83,15 +82,15 @@ const News =(props)=> {
               <b>Yay! You have seen it all</b>
             </p>
           }
-        >
+        > */}
         {
-        // !loading && 
+        !loading && 
         articles.map((article) => (
-          <div className='col-md-4 d-flex align-items-stretch my-4' key={article.url} >
+          <div className='col-md-4 justify-content-center d-flex align-items-stretch my-4' key={article.url} >
             <NewsItems title={article.title} description={article.description} imageUrl={article.urlToImage} newsUrl={article.url} publishedTime={article.publishedAt} authorName={article.author}/>
           </div>
         ))}
-        </InfiniteScroll>
+        {/* </InfiniteScroll> */}
         </div>
       </div>
     </div>
