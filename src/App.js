@@ -8,8 +8,8 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Calender from './components/Calender';
 import LoadingBar from '../node_modules/react-top-loading-bar/dist/index';
+import CalenderBlock from './components/CalenderBlock';
   // @ts-ignore
 
 /**
@@ -25,7 +25,7 @@ const App = ()=> {
     setProgress(progress);
   };
 
-  const name = "Dhairya";
+  // const name = "Dhairya";
     return (
       <>
         <LoadingBar
@@ -45,7 +45,7 @@ const App = ()=> {
             <Route exact path="/science"><News apiKey={API_KEY} setProgress={setProgress} key={"science"} country={"US"} pageSize={8} category={"science"}/></Route>
             <Route exact path="/sports"><News apiKey={API_KEY} setProgress={setProgress} key={"sports"} country={"US"} pageSize={8} category={"sports"}/></Route>
             <Route exact path="/technology"><News apiKey={API_KEY} setProgress={setProgress} key={"technology"} country={"US"} pageSize={8} category={"technology"}/></Route>
-            <Route exact path="/calender"><Calender/></Route>
+            <Route exact path="/calender"><CalenderBlock/></Route>
           </Switch>
           <Footer/>
         </Router>

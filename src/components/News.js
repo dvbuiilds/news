@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
-import InfiniteScroll from '../../node_modules/react-infinite-scroll-component/dist/index';
+// import InfiniteScroll from '../../node_modules/react-infinite-scroll-component/dist/index';
 import NewsItems from './NewsItems'
 import Spinner from './Spinner';
 
@@ -30,10 +30,10 @@ const News =(props)=> {
       props.setProgress(100);
     }, 500);
   }
-
   useEffect(() => {
     (()=>{updatePage();})();
     document.title = `${capitalizeWord(props.category)} - Top Headlines`;
+  // eslint-disable-next-line
   }, []);
   
   const handleNextPage = async ()=>{
@@ -48,20 +48,20 @@ const News =(props)=> {
     updatePage();
   }
 
-  const fetchMoreData = ()=>{
-    console.log('fetchMoreData');
-    setLoading(true);
-    setPage(page+1);
+  // const fetchMoreData = ()=>{
+  //   console.log('fetchMoreData');
+  //   setLoading(true);
+  //   setPage(page+1);
 
-    setTimeout(async()=>{
-      let url = `https://newsapi.org/v2/top-headlines?category=${props.category}&country=${props.country}&category=business&apiKey=${props.apiKey}&pageSize=${props.pageSize}&page=${page}`;
-      let data = await fetch(url);
-      // setState({page: state.page+1});
-      let parsedData = await data.json();
-      setArticles(articles.concat(parsedData["articles"]));
-      setLoading(false);
-    }, 1000)
-  }
+  //   setTimeout(async()=>{
+  //     let url = `https://newsapi.org/v2/top-headlines?category=${props.category}&country=${props.country}&category=business&apiKey=${props.apiKey}&pageSize=${props.pageSize}&page=${page}`;
+  //     let data = await fetch(url);
+  //     // setState({page: state.page+1});
+  //     let parsedData = await data.json();
+  //     setArticles(articles.concat(parsedData["articles"]));
+  //     setLoading(false);
+  //   }, 1000)
+  // }
   return (
     <div>
       <div className='container'>
